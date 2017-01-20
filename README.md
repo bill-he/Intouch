@@ -2,7 +2,7 @@
 
 <h3> Introduction </h3>
 
-InTouch is (an mobile contact book/network assistant) that seeks to reduce the friction (timing and effort) of staying in touch with the people in your professional network.
+InTouch is (an mobile contact book/network assistant) that reduces the friction (time and effort) of staying in touch with the people in your professional network.
 
 <h3> Core Platform </h3>
 
