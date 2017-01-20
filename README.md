@@ -1,10 +1,10 @@
 <h1> Intouch </h1>
 
-<h4> Introduction </h4>
+<h3> Introduction </h3>
 
 InTouch is (an mobile contact book/network assistant) that seeks to reduce the friction (timing and effort) of staying in touch with the people in your professional network.
 
-<h4> Core Platform </h4>
+<h3> Core Platform </h3>
 
 Aggregated Contact & Address book. We want a provide an integrated platform for your professional contacts.
 
