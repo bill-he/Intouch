@@ -18,7 +18,13 @@ We are currently working on building core platform (v1.0)
 
 Current mockups:
 
-<a href="https://drive.google.com/open?id=0BzXbtY5kCYAtalo5czRuZXhWbjQ"> Address Book </a>
-<a href="https://drive.google.com/open?id=0BzXbtY5kCYAtZV9jbUtuMHpfV3M"> Profile Page </a>
-<a href="https://drive.google.com/open?id=0BzXbtY5kCYAtSUd5eGl3aFV4aHM"> Aggregate Communication </a>
+<ul style="list-style-type:disc">
+  <li><a href="https://drive.google.com/open?id=0BzXbtY5kCYAtalo5czRuZXhWbjQ"> Address Book </a></li>
+  <li><a href="https://drive.google.com/open?id=0BzXbtY5kCYAtZV9jbUtuMHpfV3M"> Profile Page </a></li>
+  <li><a href="https://drive.google.com/open?id=0BzXbtY5kCYAtSUd5eGl3aFV4aHM"> Aggregate Communication </a></li>
+</ul>
+
+
+
+
 
