@@ -24,7 +24,8 @@ Current mockups:
   <li><a href="https://drive.google.com/open?id=0BzXbtY5kCYAtSUd5eGl3aFV4aHM"> Aggregate Communication </a></li>
 </ul>
 
+<h3> Dependencies/Frameworks/Technologies </h3>
 
-
+Xamarin for Native iOS and Android development: https://www.xamarin.com/
 
 
