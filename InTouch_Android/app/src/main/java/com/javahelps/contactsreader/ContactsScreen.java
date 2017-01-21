@@ -9,8 +9,8 @@ import android.os.Build;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -18,7 +18,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+import static android.provider.AlarmClock.EXTRA_MESSAGE;
+
+public class ContactsScreen extends AppCompatActivity {
     // The ListView
     private ListView lstNames;
 
@@ -35,18 +37,25 @@ public class MainActivity extends AppCompatActivity {
 
         // Read and show the contacts
         showContacts();
+        lstNames.setTextFilterEnabled(true);
+        lstNames.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            public void onItemClick(AdapterView<?> parent, View view,int position, long id)
+            {
+                //here i want to get the items
+                String name = (String) parent.getItemAtPosition(position);
+                goToProfile(view, name);
+            }
+        });
     }
 
-    public void Kevin(View view) {
+    public void goToProfile(View view, String name) {
 
         // create intent for other activity
-        Intent intent = new Intent(this, Kevin.class);
-
-        //lstNames.
-
-
-        // and then you start it
+        Intent intent = new Intent(this, Profile.class);
+        intent.putExtra("name", name);
         startActivity(intent);
+
     }
 
     /**
