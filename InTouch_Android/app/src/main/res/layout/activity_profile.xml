@@ -8,14 +8,82 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.javahelps.contactsreader.Profile">
+    tools:context="com.javahelps.contactsreader.ProfileDisplay">
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/star"
+        android:numStars="1"
+        android:clickable="true"
+        android:isIndicator="true" />
+
+    <TextView
+        android:text="Email: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:id="@+id/email_textview"
+        android:layout_below="@+id/editText"
+        android:layout_alignLeft="@+id/email2_textview"
+        android:layout_alignStart="@+id/email2_textview" />
+
+    <TextView
+        android:text="Phone: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="19dp"
+        android:id="@+id/phone_textview"
+        android:layout_below="@+id/email2_textview"
+        android:layout_alignLeft="@+id/first_meet_textview"
+        android:layout_alignStart="@+id/first_meet_textview" />
+
+    <TextView
+        android:text="Email Alternate: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:id="@+id/email2_textview"
+        android:layout_below="@+id/email_textview"
+        android:layout_alignLeft="@+id/phone_textview"
+        android:layout_alignStart="@+id/phone_textview" />
 
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/name"
-        android:textSize="50sp"
+        android:textSize="36sp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_toRightOf="@+id/email_textview"
+        android:layout_toEndOf="@+id/email_textview" />
+
+    <TextView
+        android:text="How did you meet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="TextView"
+        android:id="@+id/first_meet_textview"
+        android:layout_alignBaseline="@+id/editText"
+        android:layout_alignBottom="@+id/editText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="19dp"
+        android:layout_marginStart="19dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Location or event..."
+        android:ems="10"
+        android:id="@+id/editText"
+        android:layout_below="@+id/star"
+        android:layout_toRightOf="@+id/first_meet_textview"
+        android:layout_toEndOf="@+id/first_meet_textview"
+        android:layout_marginLeft="29dp"
+        android:layout_marginStart="29dp" />
+
 </RelativeLayout>

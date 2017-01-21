@@ -1,23 +1,43 @@
 package com.javahelps.contactsreader;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
+/**
+ * Created by billhe on 1/21/17.
+ */
 
-public class Profile extends AppCompatActivity {
+public class Profile {
+    private String _name;
+    private String _email;
+    private String _number;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+    public Profile (String name, String email, String phoneNumber) {
+        _name = name;
+        _email = email;
+        _number = phoneNumber;
 
-        Intent intent = getIntent();
-
-        TextView textview = (TextView) findViewById(R.id.name);
-        String name = intent.getStringExtra("name");
-        textview.setText(name);
     }
+
+    public String getName() {
+        return _name;
+    }
+
+    public String getEmail() {
+        return _email;
+    }
+
+    public String getNumber() {
+        return _number;
+    }
+    /*
+    public void addEmail(String email, String type) {
+        if (_emails == null) _emails = new ArrayList<String>();
+
+        _emails.add(type.replace(" ", "") + " " + email.replace(" ", "") );
+
+    }
+    */
 }

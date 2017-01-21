@@ -9,20 +9,23 @@ import android.os.Build;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class ContactsScreen extends AppCompatActivity {
     // The ListView
     private ListView lstNames;
+
+    private Button localImport;
 
     // Request code for READ_CONTACTS. It can be any number > 0.
     private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 100;
@@ -32,27 +35,34 @@ public class ContactsScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Find the list view
-        this.lstNames = (ListView) findViewById(R.id.lstNames);
+        // link up the listview of the names
+        lstNames = (ListView) findViewById(R.id.lstNames);
 
-        // Read and show the contacts
-        showContacts();
+        // link up the button
+        localImport = (Button) findViewById(R.id.import_button);
+
         lstNames.setTextFilterEnabled(true);
+
         lstNames.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             public void onItemClick(AdapterView<?> parent, View view,int position, long id)
             {
                 //here i want to get the items
                 String name = (String) parent.getItemAtPosition(position);
-                goToProfile(view, name);
+                goToProfile(name);
             }
         });
     }
 
-    public void goToProfile(View view, String name) {
+    public void getContacts(View view) {
+        showContacts();
+        lstNames.setTextFilterEnabled(true);
+    }
+
+    public void goToProfile(String name) {
 
         // create intent for other activity
-        Intent intent = new Intent(this, Profile.class);
+        Intent intent = new Intent(this, ProfileDisplay.class);
         intent.putExtra("name", name);
         startActivity(intent);
 
@@ -69,8 +79,14 @@ public class ContactsScreen extends AppCompatActivity {
         } else {
 
             // Android version is lesser than 6.0 or the permission is already granted.
-            List<String> contacts = getContactNames();
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, contacts);
+            List<Profile> contacts = getContactNames();
+            List<String> names = new ArrayList<String>();
+            for (Profile profile : contacts) {
+                names.add(profile.getName());
+            }
+            Collections.sort(names);
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
             lstNames.setAdapter(adapter);
         }
     }
@@ -93,25 +109,33 @@ public class ContactsScreen extends AppCompatActivity {
      *
      * @return a list of names.
      */
-    private List<String> getContactNames() {
-        List<String> contacts = new ArrayList<>();
+    private List<Profile> getContactNames() {
+        ArrayList<Profile> profiles = new ArrayList<Profile>();
         // Get the ContentResolver
         ContentResolver cr = getContentResolver();
         // Get the Cursor of all the contacts
         Cursor cursor = cr.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                String id = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
+                Cursor cur1 = cr.query(
+                        ContactsContract.CommonDataKinds.Email.CONTENT_URI, null,
+                        ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = ?",
+                        new String[]{id}, null);
+                while (cur1.moveToNext()) {
+                    //to get the contact names
+                    String name = cur1.getString(cur1.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+                    String phoneNumber = cur1.getString(cur1.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                    String email = cur1.getString(cur1.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA));
 
-        // Move the cursor to first. Also check whether the cursor is empty or not.
-        if (cursor.moveToFirst()) {
-            // Iterate through the cursor
-            do {
-                // Get the contacts name
-                String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-                contacts.add(name);
-            } while (cursor.moveToNext());
+                    Profile profile = new Profile(name, email, phoneNumber);
+                    profiles.add(profile);
+                }
+                cur1.close();
+            }
         }
-        // Close the curosor
         cursor.close();
 
-        return contacts;
+        return profiles;
     }
 }
