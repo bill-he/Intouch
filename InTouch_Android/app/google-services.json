@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "903579415569",
+    "project_id": "intouch-156318"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:903579415569:android:f19430ebe25bbcb8",
+        "android_client_info": {
+          "package_name": "com.javahelps.contactsreader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "903579415569-lmpe8glnok3mf42utjo384pr06djfv5l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.javahelps.contactsreader",
+            "certificate_hash": "D9DB12253A48996B91488A560B518DD394EBCDA0"
+          }
+        },
+        {
+          "client_id": "903579415569-bssiuk6sls2n938lnsri8bjmpioldkts.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4Ac7yQ40dzhImwMVYLFqKIj-BsQPYtEE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
